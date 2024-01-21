@@ -1,0 +1,48 @@
+import art
+
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',]
+
+print(art.logo)
+
+def user_input():
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    if direction not in ["encode", "decode"]:
+        print("Please choose 'encode' or 'decode'.")
+        return None, None, None  # Return None values to indicate an error
+        user_input()
+
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+
+    return direction, text, shift
+
+def caesar(start_text, shift_amount, cipher_direction):
+    end_text = ""
+    for letter in start_text:
+        if letter in alphabet:
+            position = alphabet.index(letter)
+            if cipher_direction == "encode":
+                new_position = (position + shift_amount) % 26  # Use modulus to handle shifts greater than 26
+            else:
+                new_position = (position - shift_amount) % 26
+            end_text += alphabet[new_position]
+        else:
+            end_text += letter  # Preserve non-alphabetic characters
+
+    print(f"Your text is '{start_text}'. And the {cipher_direction}d text is '{end_text}'.")
+    return end_text
+
+while True:
+    #Assign values returned from user_input() to variables
+    direction, text, shift = user_input()
+    if direction is not None:
+        end_text = caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+        restart = input("Do you want to go again? Type 'yes' or 'no': ").lower()
+        if restart == "yes" or "y":
+          user_input()
+          caesar(start_text= text, shift_amount=shift, cipher_direction=direction)
+        else:
+          print("Thanks for using Caesar Cipher :)")
+          break
+user_input
+caesar(start_text= text, shift_amount=shift, cipher_direction=direction)
