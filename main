@@ -37,7 +37,7 @@ while True:
     direction, text, shift = user_input()
     if direction is not None:
         end_text = caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
-        restart = input("Do you want to go again? Type 'yes' or 'no': ").lower()
+        restart = input("Do you want to use it again? Type 'yes' or 'no': ").lower()
         if restart == "yes" or "y":
           user_input()
           caesar(start_text= text, shift_amount=shift, cipher_direction=direction)
